@@ -35,7 +35,7 @@ flutter:
 
   
   assets:
-    - assets/icons
+    - assets/icons/
     - assets/ripple.gif
     - assets/spinner.gif
   #   - images/a_dot_ham.jpeg
