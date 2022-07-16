@@ -1,11 +1,12 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:ffi';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_app_reponsive_ui/konstant.dart';
+import 'package:furniture_app_reponsive_ui/models/category.dart';
 import 'package:furniture_app_reponsive_ui/size_config.dart';
+import 'package:furniture_app_reponsive_ui/title_text.dart';
+import 'package:furniture_app_reponsive_ui/widgets/category_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var defaultSize = SizeConfig.defaultSize;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -40,9 +43,24 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: SizeConfig.defaultSize! * 2,
-          )
+            width: defaultSize! * 2,
+          ),
         ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(defaultSize * 2),
+              child: TitleText(title: "Browse by category"),
+            ),
+            CategoryCard(
+              category: category,
+            )
+          ],
+        )),
       ),
     );
   }
