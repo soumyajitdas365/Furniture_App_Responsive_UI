@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_app_reponsive_ui/konstant.dart';
 import 'package:furniture_app_reponsive_ui/models/category.dart';
+import 'package:furniture_app_reponsive_ui/service/fetch_category_data.dart';
 import 'package:furniture_app_reponsive_ui/size_config.dart';
-import 'package:furniture_app_reponsive_ui/title_text.dart';
+import 'package:furniture_app_reponsive_ui/widgets/categories.dart';
+import 'package:furniture_app_reponsive_ui/widgets/title_text.dart';
 import 'package:furniture_app_reponsive_ui/widgets/category_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,9 +58,13 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.all(defaultSize * 2),
               child: TitleText(title: "Browse by category"),
             ),
-            CategoryCard(
-              category: category,
-            )
+            FutureBuilder(
+                future: fetchCategories(),
+                builder: (context, snapshot) => snapshot.hasData
+                    ? Categories(
+                        categories: snapshot.data as List<Category>,
+                      )
+                    : CircularProgressIndicator()),
           ],
         )),
       ),

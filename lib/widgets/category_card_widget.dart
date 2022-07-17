@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app_reponsive_ui/konstant.dart';
 import 'package:furniture_app_reponsive_ui/models/category.dart';
-import 'package:furniture_app_reponsive_ui/title_text.dart';
+import 'package:furniture_app_reponsive_ui/widgets/title_text.dart';
 
 import '../size_config.dart';
 
@@ -18,43 +18,47 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double? defaultSize = SizeConfig.defaultSize;
-    return SizedBox(
-      width: defaultSize! * 20.5,
-      child: AspectRatio(
-        aspectRatio: 0.82,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            ClipPath(
-              clipper: CategoryClipPath(),
-              child: AspectRatio(
-                aspectRatio: 1.025,
-                child: Container(
-                  padding: EdgeInsets.all(defaultSize * 2),
-                  color: kSecondaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TitleText(title: category.title),
-                      SizedBox(
-                        height: defaultSize,
-                      ),
-                      Text("${category.numOfProducts}+ Products"),
-                    ],
+    return Padding(
+      padding: EdgeInsets.all(defaultSize! * 2),
+      child: SizedBox(
+        width: defaultSize * 20.5,
+        child: AspectRatio(
+          aspectRatio: 0.82,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              ClipPath(
+                clipper: CategoryClipPath(),
+                child: AspectRatio(
+                  aspectRatio: 1.025,
+                  child: Container(
+                    padding: EdgeInsets.all(defaultSize * 2),
+                    color: kSecondaryColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TitleText(title: category.title),
+                        SizedBox(
+                          height: defaultSize,
+                        ),
+                        Text("${category.numOfProducts}+ Products"),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: AspectRatio(
-                  aspectRatio: 1.15,
-                  child: FadeInImage.assetNetwork(
-                      placeholder: "assets/spinner.gif", image: category.image),
-                ))
-          ],
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: AspectRatio(
+                    aspectRatio: 1.15,
+                    child: FadeInImage.assetNetwork(
+                        placeholder: "assets/spinner.gif",
+                        image: category.image),
+                  ))
+            ],
+          ),
         ),
       ),
     );
