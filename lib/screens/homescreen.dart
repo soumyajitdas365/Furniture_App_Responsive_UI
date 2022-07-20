@@ -6,9 +6,11 @@ import 'package:furniture_app_reponsive_ui/konstant.dart';
 import 'package:furniture_app_reponsive_ui/models/category.dart';
 import 'package:furniture_app_reponsive_ui/models/products.dart';
 import 'package:furniture_app_reponsive_ui/service/fetch_category_data.dart';
+import 'package:furniture_app_reponsive_ui/service/fetch_product_data.dart';
 import 'package:furniture_app_reponsive_ui/size_config.dart';
 import 'package:furniture_app_reponsive_ui/widgets/categories.dart';
 import 'package:furniture_app_reponsive_ui/widgets/productcard.dart';
+import 'package:furniture_app_reponsive_ui/widgets/recomendedsection.dart';
 import 'package:furniture_app_reponsive_ui/widgets/title_text.dart';
 import 'package:furniture_app_reponsive_ui/widgets/category_card_widget.dart';
 
@@ -77,20 +79,13 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.all(defaultSize * 2),
               child: TitleText(title: "Recomended for you"),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  ProductCard(
-                    product: product,
-                    onpress: () {},
-                  ),
-                  ProductCard(
-                    product: product,
-                    onpress: () {},
-                  ),
-                ],
-              ),
+            FutureBuilder(
+              future: fetchProducts(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return snapshot.hasData
+                    ? RecomendedSection(products: snapshot.data)
+                    : Center(child: Image.asset("assets/ripple.gif"));
+              },
             ),
           ],
         )),

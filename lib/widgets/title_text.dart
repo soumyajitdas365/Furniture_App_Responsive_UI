@@ -10,7 +10,7 @@ class TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double? defaultSize = SizeConfig.defaultSize;
-    double? fontsize = defaultSize! * 2;
+    double? fontsize = defaultSize! * 1.6;
     return Text(
       title,
       style: TextStyle(
