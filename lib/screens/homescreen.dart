@@ -9,7 +9,7 @@ import 'package:furniture_app_reponsive_ui/service/fetch_category_data.dart';
 import 'package:furniture_app_reponsive_ui/service/fetch_product_data.dart';
 import 'package:furniture_app_reponsive_ui/size_config.dart';
 import 'package:furniture_app_reponsive_ui/widgets/categories.dart';
-import 'package:furniture_app_reponsive_ui/widgets/productcard.dart';
+import 'package:furniture_app_reponsive_ui/widgets/product_card.dart';
 import 'package:furniture_app_reponsive_ui/widgets/recomendedsection.dart';
 import 'package:furniture_app_reponsive_ui/widgets/title_text.dart';
 import 'package:furniture_app_reponsive_ui/widgets/category_card_widget.dart';
@@ -83,7 +83,9 @@ class HomeScreen extends StatelessWidget {
               future: fetchProducts(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return snapshot.hasData
-                    ? RecomendedSection(products: snapshot.data)
+                    ? RecomendedSection(
+                        products: snapshot.data,
+                      )
                     : Center(child: Image.asset("assets/ripple.gif"));
               },
             ),

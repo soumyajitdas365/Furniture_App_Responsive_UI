@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:furniture_app_reponsive_ui/models/products.dart';
+import 'package:furniture_app_reponsive_ui/screens/product_details_screen.dart';
 import 'package:furniture_app_reponsive_ui/size_config.dart';
-import 'package:furniture_app_reponsive_ui/widgets/productcard.dart';
+import 'package:furniture_app_reponsive_ui/widgets/product_card.dart';
 
 class RecomendedSection extends StatelessWidget {
   const RecomendedSection({
@@ -14,7 +17,7 @@ class RecomendedSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var defaultSize = SizeConfig.defaultSize;
+
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -25,8 +28,9 @@ class RecomendedSection extends StatelessWidget {
         crossAxisSpacing: 5,
       ),
       itemCount: products.length,
-      itemBuilder: (BuildContext context, int index) =>
-          ProductCard(product: products[index], onpress: () {}),
+      itemBuilder: (context, index) => ProductCard(
+        product: products[index],
+      ),
     );
   }
 }
