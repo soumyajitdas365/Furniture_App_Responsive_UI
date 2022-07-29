@@ -15,12 +15,11 @@ class FurnitureApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
         textTheme:
             GoogleFonts.ralewayTextTheme().apply(displayColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(color: Colors.transparent, elevation: 0),
       ),
       home: HomeScreen(),
