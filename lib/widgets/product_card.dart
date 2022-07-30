@@ -41,8 +41,11 @@ class ProductCard extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 1,
-                child: FadeInImage.assetNetwork(
-                    placeholder: "assets/spinner.gif", image: product.image),
+                child: Hero(
+                  tag: product.id,
+                  child: FadeInImage.assetNetwork(
+                      placeholder: "assets/spinner.gif", image: product.image),
+                ),
               ),
               TitleText(title: product.title),
               SizedBox(
